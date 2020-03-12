@@ -18,21 +18,33 @@ $(document).on("keypress", function (event) {
 
 function nextSequence() {
     level++;
-    setTimeout($("#level-title").text("Level " + level), 3000); //changes the title to the actual level
 
-    var randomNumber = Math.floor(Math.random() * 10 + 1) % 4; //randomizes a number
-    var randomChosenColor = buttonColors[randomNumber]; //translates a number to a color
-    gamePattern.push(randomChosenColor); //adds color to array
-    console.log(gamePattern);
+    $("#level-title").text("Level " + level);
+
+    setTimeout(function () {
+        var randomNumber = Math.floor(Math.random() * 10 + 1) % 4; //randomizes a number
+        var randomChosenColor = buttonColors[randomNumber]; //translates a number to a color
+        gamePattern.push(randomChosenColor); //adds color to array
+        console.log(gamePattern);
+    }, 0);
+
+    setTimeout(function () {
+        var i = 0;
+        var delay = 200;
+        while (i <= level) {
+            console.log(i);
+
+            $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
+            i = setTimeout(function (i) {
+                return i++;
+            }, delay * (i + 1));
+
+        }
+    }, 1000);
     //display the new sequence
-    var i = 0;
-    while (i <= level) {
-        $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
-        setInterval(
-            function () {
-                i++;
-            }, 3000);
-    }
+
+    console.log("finished while"); ///debug
+
 }
 
 //this part is listenng to the  mouse clicks
@@ -48,8 +60,12 @@ $(".btn").on("click", function () {
 
         if (checkAnswer(userClickedPattern.length - 1) == true) {
             if (gamePattern.length == userClickedPattern.length) {
+                $("#level-title").text("GOOD JOB!!!");
+
                 userClickedPattern = [];
-                setTimeout(nextSequence(), 20000);
+                setTimeout(function () {
+                    nextSequence();
+                }, 1000);
             }
         } else {
             $("#level-title").text("GAME OVER  Press any key to Restart");
