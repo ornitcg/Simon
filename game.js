@@ -28,23 +28,22 @@ function nextSequence() {
         console.log(gamePattern);
     }, 0);
 
-    setTimeout(function () {
-        var i = 0;
-        var delay = 200;
-        while (i <= level) {
-            console.log(i);
-
-            $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
-            i = setTimeout(function (i) {
-                return i++;
-            }, delay * (i + 1));
-
-        }
-    }, 1000);
+    var i = 0;
+    while (i <= level) {
+        console.log(i + " level " + level);
+        fadeSqr(i);
+        i++;
+    }
     //display the new sequence
 
     console.log("finished while"); ///debug
 
+}
+
+function fadeSqr(i) {
+    setTimeout(function () {
+        $("#" + gamePattern[i]).fadeIn(200).fadeOut(200).fadeIn(200);
+    }, 500 * i);
 }
 
 //this part is listenng to the  mouse clicks
