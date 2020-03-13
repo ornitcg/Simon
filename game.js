@@ -56,6 +56,9 @@ $(".btn").on("click", function () {
     }
 });
 /////////////////////// functions //////////////////////
+
+//this method randomly picks a new color to be added to the game sequence, when a new level begins
+//and the whle sequence is shown each time
 function nextSequence() {
     level++;
     $("#level-title").text("Level " + level); // updates the title to the relevant level
@@ -88,6 +91,7 @@ function playSoundName(colorName) {
     audio.play();
 }
 
+//this method make a colored squuare flicker  whhe it's pressed
 function animatePress(currentColor) {
     $("#" + currentColor).addClass("pressed");
 
@@ -96,6 +100,9 @@ function animatePress(currentColor) {
     }, 75);
 }
 
+// this method checks every answer of the user. if the nswer is wrong the game is over
+// returns true if a click is right
+// retuurns false if a click is wrong
 function checkAnswer(currentLevel) {
 
     if (gamePattern[currentLevel] != userClickedPattern[currentLevel]) {
