@@ -1,2 +1,2 @@
 # Simon
-Simon game by fullstack udemy course
+Simon game by The Complete 2020 Web Development Bootcamp
